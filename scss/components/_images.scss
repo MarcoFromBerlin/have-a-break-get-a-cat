@@ -18,28 +18,28 @@
   vertical-align: top;
 }
 .cat__div {
-  //   background: url("https://cdn2.thecatapi.com/images/MpbvLoqT3.jpg") no-repeat
   //     center;
-  background-position: center;
   //   background-size: cover;
-  background-repeat: no-repeat;
   //   width: 500px;
   //   height: 900px;
   //   width: 1000px;
-
+  background-position: center;
+  background-repeat: no-repeat;
   //   display: inline-block;
 
-  &img {
-    cursor: pointer;
-  }
+  cursor: pointer;
 }
 
-// slide__end__text
+.slide__end {
+  background: url("../images/cat-working.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+}
 
 .slide__end__text {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 70vh;
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  //   width: 100%;
+  //   height: 70vh;
 }
