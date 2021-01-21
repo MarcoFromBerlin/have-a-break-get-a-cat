@@ -49,12 +49,12 @@ getUserDataWithPromise().then(
       }px`;
       img.style.transition = "all 0.5s";
 
-      //   div.appendChild(img);
-      //   imgCont.appendChild(img);
-      document.querySelector(".cat__images__container").appendChild(img);
+      document
+        .querySelector(".cat__images__container")
+        .insertBefore(img, document.querySelectorAll(".cat__div")[0]);
+      // document.querySelector(".cat__images__container").appendChild(img);
     });
-    const endSlide = document.createElement("div");
-    endSlide.className = "cat__div";
+    const endSlide = document.querySelector(".slide__end");
     endSlide.style.backgroundColor = "red";
     endSlide.style.width = `${
       document.body.querySelector(".cat__images__main").offsetWidth
@@ -64,7 +64,7 @@ getUserDataWithPromise().then(
     }px`;
     endSlide.style.transition = "all 0.5s";
 
-    endSlide.innerHTML = "<h1>Paragraph changed!</h1>";
+    // endSlide.innerHTML = "<h1>Paragraph changed!</h1>";
     document.querySelector(".cat__images__container").appendChild(endSlide);
   },
   function (error) {
@@ -73,14 +73,6 @@ getUserDataWithPromise().then(
 );
 
 // API END
-
-// if (isLoaded) {
-//   const curImage = document.querySelectorAll(".cat__img");
-//   console.log(
-//     document.querySelector(".cat__images__container").childNodes.length > 0
-//   );
-// }
-// console.log(document.querySelector(".cat__images__container").parentNode);
 
 // OBSERVER
 
@@ -113,12 +105,18 @@ const nextImg = (e) => {
   if (e.target.classList.contains("cat__div")) {
     console.log("click");
     // TOTAL width - Div Width
-
+    // console.log(e.target.offsetWidth);
     e.target.style.width = `${0}px`;
-    e.target.parentElement.querySelector(".cat__div").style.marginLeft = `-${
-      e.target.parentElement.parentElement.parentElement.offsetWidth -
-      e.target.offsetWidth
-    }px`;
+    // e.target.parentElement.querySelector(".cat__div").style.marginLeft = `-${
+    //   e.target.parentElement.parentElement.parentElement.offsetWidth -
+    //   e.target.offsetWidth +
+    //   e.target.offsetWidth
+    // }px`;
+    // e.target.parentElement.querySelector(".cat__div").style.marginLeft = `-${
+    //   e.target.parentElement.parentElement.parentElement.offsetWidth -
+    //   e.target.offsetWidth +
+    //   e.target.offsetWidth
+    // }px`;
     count++;
   }
   // if (e.target.classList.contains("cat__div") && count >= totalSlides) {
