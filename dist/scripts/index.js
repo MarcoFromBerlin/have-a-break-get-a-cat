@@ -25,37 +25,56 @@ function getUserDataWithPromise() {
   });
 }
 
-getUserDataWithPromise()
-  .then(
-    function (result) {
-      var data = JSON.parse(result);
+getUserDataWithPromise().then(
+  function (result) {
+    var data = JSON.parse(result);
 
-      data.forEach((image) => {
-        const img = document.createElement("img");
-        img.className = "cat__img";
+    data.forEach((image) => {
+      const img = document.createElement("img");
+      img.className = "cat__img";
 
-        img.src = image.url;
-        document.querySelector(".cat__images__container").appendChild(img);
-      });
-    },
-    function (error) {
-      console.log(error);
-    }
-  )
-  .then((isLoaded = true));
+      img.src = image.url;
+      document.querySelector(".cat__images__container").appendChild(img);
+    });
+  },
+  function (error) {
+    console.log(error);
+  }
+);
 
 // API END
 
+// if (isLoaded) {
+//   const curImage = document.querySelectorAll(".cat__img");
+//   console.log(
+//     document.querySelector(".cat__images__container").childNodes.length > 0
+//   );
+// }
+// console.log(document.querySelector(".cat__images__container").parentNode);
+
 // OBSERVER
-if (isLoaded) {
-  const curImage = document.querySelectorAll("cat__img");
-  console.log(curImage);
-}
+
+// MUST BE A NODE NOT A NODE LIST!!!
+var target = document.querySelector(".cat__images__container");
+
+// create an observer instance
+var observer = new MutationObserver(function (mutations) {
+  //   console.log(mutations.length);
+  if (mutations.length > 0) {
+    isLoaded = true;
+  }
+});
+
+// configuration of the observer:
+var config = { attributes: true, childList: true, characterData: true };
+
+// pass in the target node, as well as the observer options
+observer.observe(target, config);
 
 // IMAGES
 const nextImg = (e) => {
   if (e.target.classList.contains("cat__img")) {
-    console.log("cat img");
+    if (isLoaded) console.log("cat img");
   }
 };
 document.body.addEventListener("click", nextImg);
