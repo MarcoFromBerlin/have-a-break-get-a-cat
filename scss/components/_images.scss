@@ -1,10 +1,23 @@
 .cat__images__main {
+  //   white-space: nowrap;
   white-space: nowrap;
 }
 .cat__images__container {
   height: 80vh;
+  white-space: nowrap;
+}
+.img__container {
 }
 .cat__img {
   width: 100%;
   vertical-align: top;
+}
+.cat__div {
+  background: url("https://cdn2.thecatapi.com/images/MpbvLoqT3.jpg") no-repeat
+    center;
+  background-position: center;
+  //   background-size: cover;
+  background-repeat: no-repeat;
+  width: 500px;
+  height: 600px;
 }

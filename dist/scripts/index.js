@@ -30,10 +30,17 @@ getUserDataWithPromise().then(
     var data = JSON.parse(result);
 
     data.forEach((image) => {
+      const imgCont = document.createElement("div");
+      imgCont.className = "img__container";
+      //   const div = document.createElement("div");
+      //   div.className = "col-12";
+
       const img = document.createElement("img");
       img.className = "cat__img";
 
       img.src = image.url;
+      //   div.appendChild(img);
+      imgCont.appendChild(img);
       document.querySelector(".cat__images__container").appendChild(img);
     });
   },
