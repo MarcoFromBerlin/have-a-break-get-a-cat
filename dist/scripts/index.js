@@ -16,7 +16,7 @@ function getUserDataWithPromise() {
     };
     xhr.open(
       "GET",
-      "https://api.thecatapi.com/v1/images/?limit=5&page=0&order=DESC&",
+      "https://api.thecatapi.com/v1/images/?limit=2&page=0&order=DESC&",
       true
     );
     xhr.setRequestHeader("Content-Type", "application/json");
@@ -30,11 +30,6 @@ getUserDataWithPromise().then(
     var data = JSON.parse(result);
 
     data.forEach((image) => {
-      //   const imgCont = document.createElement("div");
-      //   imgCont.className = "img__container";
-      //   const div = document.createElement("div");
-      //   div.className = "col-12";
-
       const catImgCont = document.querySelector(".cat__images__container");
 
       // set the width of the div container
@@ -44,12 +39,6 @@ getUserDataWithPromise().then(
 
       const img = document.createElement("div");
       img.className = "cat__div";
-      //   const img = document.createElement("img");
-      //   img.className = "cat__img";
-      //   console.log(document.body.querySelector(".cat__images__main"));
-      //   console.log(
-      //     document.body.querySelector(".cat__images__main").offsetWidth
-      //   );
 
       img.style.backgroundImage = `url('${image.url}')`;
       img.style.width = `${
@@ -64,6 +53,19 @@ getUserDataWithPromise().then(
       //   imgCont.appendChild(img);
       document.querySelector(".cat__images__container").appendChild(img);
     });
+    const endSlide = document.createElement("div");
+    endSlide.className = "cat__div";
+    endSlide.style.backgroundColor = "red";
+    endSlide.style.width = `${
+      document.body.querySelector(".cat__images__main").offsetWidth
+    }px`;
+    endSlide.style.height = `${
+      document.body.querySelector(".cat__images__main").offsetHeight
+    }px`;
+    endSlide.style.transition = "all 0.5s";
+
+    endSlide.innerHTML = "<h1>Paragraph changed!</h1>";
+    document.querySelector(".cat__images__container").appendChild(endSlide);
   },
   function (error) {
     console.log(error);
@@ -84,13 +86,15 @@ getUserDataWithPromise().then(
 
 // MUST BE A NODE NOT A NODE LIST!!!
 var target = document.querySelector(".cat__images__container");
-
+var totalSlides;
 // create an observer instance
 var observer = new MutationObserver(function (mutations) {
   //   console.log(mutations.length);
   if (mutations.length > 0) {
     isLoaded = true;
-    console.log(document.querySelectorAll(".cat__div"));
+    // console.log(document.querySelectorAll(".cat__div"));
+    console.log(totalSlides);
+    totalSlides = document.querySelectorAll(".cat__div").length - 1;
   }
 });
 
@@ -101,26 +105,26 @@ var config = { attributes: true, childList: true, characterData: true };
 observer.observe(target, config);
 
 // IMAGES
-const nextImg = (e) => {
-  if (e.target.classList.contains("cat__div") && isLoaded) {
-    console.log("click img", e.target);
-    // console.log("margin left", e.target.style.marginLeft);
-    // console.log(e.target.offsetHeight);
-    // console.log("div width", e.target.offsetWidth);
-    // console.log(e.target.parentElement.nextSibling);
-    // console.log(e.target.closest("cat__div"));
+let count = 0;
 
+const nextImg = (e) => {
+  // console.log(totalSlides);
+  // console.log(count);
+  if (e.target.classList.contains("cat__div")) {
+    console.log("click");
     // TOTAL width - Div Width
 
-    e.target.parentElement.querySelector(
-      ".cat__div"
-    ).style.marginLeft = `-${900}px`;
-    // e.target.parentElement.querySelector(".cat__div").style.marginLeft = `-${
-    //   e.target.parentElement.parentElement.parentElement.offsetWidth -
-    //   e.target.offsetWidth +
-    //   e.target.offsetWidth
-    // }px`;
+    e.target.style.width = `${0}px`;
+    e.target.parentElement.querySelector(".cat__div").style.marginLeft = `-${
+      e.target.parentElement.parentElement.parentElement.offsetWidth -
+      e.target.offsetWidth
+    }px`;
+    count++;
   }
+  // if (e.target.classList.contains("cat__div") && count >= totalSlides) {
+  //   console.log("end");
+  //   // e.target.style.width = `${1000}px`;
+  // }
 };
 
 document.body.addEventListener("click", nextImg);
