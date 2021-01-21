@@ -30,17 +30,30 @@ getUserDataWithPromise().then(
     var data = JSON.parse(result);
 
     data.forEach((image) => {
-      const imgCont = document.createElement("div");
-      imgCont.className = "img__container";
+      //   const imgCont = document.createElement("div");
+      //   imgCont.className = "img__container";
       //   const div = document.createElement("div");
       //   div.className = "col-12";
 
-      const img = document.createElement("img");
-      img.className = "cat__img";
+      const catImgCont = document.querySelector(".cat__images__container");
 
-      img.src = image.url;
+      // set the width of the div container
+      catImgCont.style.width = `${
+        document.body.querySelector(".cat__images__main").offsetWidth
+      }px`;
+
+      const img = document.createElement("div");
+      img.className = "cat__div";
+      //   const img = document.createElement("img");
+      //   img.className = "cat__img";
+      //   console.log(document.body.querySelector(".cat__images__main"));
+      //   console.log(
+      //     document.body.querySelector(".cat__images__main").offsetWidth
+      //   );
+
+      img.style.backgroundImage = `url('${image.url}')`;
       //   div.appendChild(img);
-      imgCont.appendChild(img);
+      //   imgCont.appendChild(img);
       document.querySelector(".cat__images__container").appendChild(img);
     });
   },
@@ -80,8 +93,12 @@ observer.observe(target, config);
 
 // IMAGES
 const nextImg = (e) => {
-  if (e.target.classList.contains("cat__img")) {
-    if (isLoaded) console.log("cat img");
+  if (e.target.classList.contains("cat__div") && isLoaded) {
+    console.log(e.target.offsetHeight);
+    console.log(e.target.offsetWidth);
+    // get container width
+    console.log(e.target.parentElement.parentElement.offsetWidth);
+    console.log(e.target.parentElement.parentElement.parentElement.offsetWidth);
   }
 };
 document.body.addEventListener("click", nextImg);
