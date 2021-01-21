@@ -52,6 +52,14 @@ getUserDataWithPromise().then(
       //   );
 
       img.style.backgroundImage = `url('${image.url}')`;
+      img.style.width = `${
+        document.body.querySelector(".cat__images__main").offsetWidth
+      }px`;
+      img.style.height = `${
+        document.body.querySelector(".cat__images__main").offsetHeight
+      }px`;
+      img.style.transition = "all 0.5s";
+
       //   div.appendChild(img);
       //   imgCont.appendChild(img);
       document.querySelector(".cat__images__container").appendChild(img);
@@ -82,6 +90,7 @@ var observer = new MutationObserver(function (mutations) {
   //   console.log(mutations.length);
   if (mutations.length > 0) {
     isLoaded = true;
+    console.log(document.querySelectorAll(".cat__div"));
   }
 });
 
@@ -94,11 +103,24 @@ observer.observe(target, config);
 // IMAGES
 const nextImg = (e) => {
   if (e.target.classList.contains("cat__div") && isLoaded) {
-    console.log(e.target.offsetHeight);
-    console.log(e.target.offsetWidth);
-    // get container width
-    console.log(e.target.parentElement.parentElement.offsetWidth);
-    console.log(e.target.parentElement.parentElement.parentElement.offsetWidth);
+    console.log("click img", e.target);
+    // console.log("margin left", e.target.style.marginLeft);
+    // console.log(e.target.offsetHeight);
+    // console.log("div width", e.target.offsetWidth);
+    // console.log(e.target.parentElement.nextSibling);
+    // console.log(e.target.closest("cat__div"));
+
+    // TOTAL width - Div Width
+
+    e.target.parentElement.querySelector(
+      ".cat__div"
+    ).style.marginLeft = `-${900}px`;
+    // e.target.parentElement.querySelector(".cat__div").style.marginLeft = `-${
+    //   e.target.parentElement.parentElement.parentElement.offsetWidth -
+    //   e.target.offsetWidth +
+    //   e.target.offsetWidth
+    // }px`;
   }
 };
+
 document.body.addEventListener("click", nextImg);
