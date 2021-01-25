@@ -78,3 +78,11 @@
   border: 0;
   background-color: transparent;
 }
+
+.hide__counter {
+  display: none;
+  // visibility: hidden;
+}
+.show__counter {
+  display: block;
+}
