@@ -54,6 +54,18 @@ counterSlide.style.height = `${
 }px`;
 counterSlide.style.transition = "all 0.5s";
 
+// set end HIDE OVERLAY
+// const overlaySlide = document.querySelector(".slide__overlay");
+// overlaySlide.style.backgroundColor = "TRANSPARENT";
+// // overlaySlide.style.position = "absolute";
+// overlaySlide.style.width = `${
+//   document.body.querySelector(".cat__images__main").offsetWidth
+// }px`;
+// overlaySlide.style.height = `${
+//   document.body.querySelector(".cat__images__main").offsetHeight
+// }px`;
+// overlaySlide.style.transition = "all 0.5s";
+
 const startCountdown = () => {
   var countDownDate = new Date(JSON.parse(getTime)?.expiry);
   var distance = countDownDate - now;
@@ -203,10 +215,25 @@ function play() {
 // IMAGES
 
 const nextImg = (e) => {
-  console.log(e.target);
-  let isIn = e.target.classList.contains("cat__div");
+  console.log(
+    e.target.classList.contains("cat__div") ||
+      e.target.classList.contains("btn-start")
+  );
+  let isIn =
+    e.target.classList.contains("cat__div") ||
+    e.target.classList.contains("btn-start");
 
-  if (isIn && count !== totalSlides) {
+  if (e.target.classList.contains("btn-start") && count !== totalSlides) {
+    if (count === 0) play();
+    e.target.parentElement.style.width = `${0}px`;
+    e.target.parentElement.style.opacity = "0";
+    count++;
+
+    // triggers at counter end to set time
+    countEnd();
+  }
+
+  if (e.target.classList.contains("cat__div") && count !== totalSlides) {
     if (count === 0) play();
     e.target.style.width = `${0}px`;
     e.target.style.opacity = "0";
