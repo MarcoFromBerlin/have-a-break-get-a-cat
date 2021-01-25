@@ -30,16 +30,51 @@
   cursor: pointer;
 }
 
-.slide__end {
-  background: url("../images/cat-working.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
+.slide__end
+// .slide__start
+{
+  background: url("../images/cat-working.jpg") no-repeat center center/cover;
+  // background-position: center;
+  // background-repeat: no-repeat;
+
+  // IMPORTANT FOR THE TEXT WRAPPING
+  overflow: hidden;
+  border-radius: 1rem;
+
+  h4 {
+    color: white;
+  }
 }
 
-.slide__end__text {
+.slide__start {
+  i {
+    color: saddlebrown;
+  }
+}
+
+.slide__text {
   //   display: flex;
   //   justify-content: center;
   //   align-items: center;
   //   width: 100%;
-  //   height: 70vh;
+  //   height: 70vh;ù
+  color: white;
+  letter-spacing: 1px;
+  font-weight: $thin;
+}
+
+.cat__title {
+  font-family: "Hachi Maru Pop", cursive;
+  font-size: 4rem;
+  color: saddlebrown;
+}
+.cat__title__end {
+  font-family: "Hachi Maru Pop", cursive;
+  font-size: 2rem;
+  color: white;
+}
+.btn__pawn {
+  cursor: pointer;
+  border: 0;
+  background-color: transparent;
 }

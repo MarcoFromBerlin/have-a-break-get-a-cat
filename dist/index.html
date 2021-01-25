@@ -1,7 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
     <link rel="stylesheet" href="css/main.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&display=swap"
+      rel="stylesheet"
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@200;300;400&display=swap"
       rel="stylesheet"
@@ -23,20 +30,35 @@
   </head>
   <body>
     <div class="container">
-      <div class="row">
-        <div class="col-3"></div>
-        <div class="col-6 t-center-x">
-          Click here to get a slideshow of 5 funny cats!
-        </div>
-        <div class="col-3"></div>
-      </div>
       <div class="row pv-3 cat__images__main">
         <div class="cat__images__container">
+          <div class="slide__start cat__div">
+            <div class="col-3"></div>
+            <div class="col-6 t-center-x slide__text pv-2">
+              <h3 class="cat__title pv-2">Have a break,<br />get a cat!</h3>
+              <button class="btn__pawn">
+                <i class="fas fa-paw fa-7x"></i>
+              </button>
+              <h4 class="pt-4">
+                Click the pawn to get a slideshow of 5 random funny cats!
+              </h4>
+              <!-- <input type="button" value="PLAY" onclick="play()" /> -->
+              <audio
+                id="meow"
+                src="https://upload.wikimedia.org/wikipedia/commons/6/62/Meow.ogg"
+              ></audio>
+            </div>
+            <div class="col-3"></div>
+          </div>
           <div class="slide__end cat__div">
             <div class="col-3"></div>
-            <div class="col-6 t-center-x slide__end__text">
-              <h3>No Cats anymore so go back to work!</h3>
-              <h4>Now you have to wait 3 hours to get other cats!</h4>
+            <div class="col-6 t-center-x slide__text pt-2">
+              <h3 class="cat__title__end text-white">
+                No more Cats!<br />So go back to work!
+              </h3>
+              <h4 class="pt-2">
+                Now you have to wait 3 hours to get other cats!
+              </h4>
             </div>
             <div class="col-3"></div>
           </div>
